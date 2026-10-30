@@ -1,0 +1,18 @@
+[project]
+name = "codex-mihomo"
+version = "0.1.0"
+description = "Loopback Mihomo proxy with stable node selection for Codex CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["PyYAML>=6"]
+
+[project.scripts]
+codex-mihomo = "codex_mihomo.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["codex_mihomo*"]

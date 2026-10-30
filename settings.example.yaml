@@ -1,0 +1,40 @@
+# Copy with: python3 -m codex_mihomo init
+# Subscription URLs, node credentials, and runtime logs do not belong in this file.
+# They are stored under `home` with mode 0700 after `provider register`.
+
+home: ~/.codex-mihomo
+mihomo_bin: ~/.codex-mihomo/mihomo
+
+# Loopback only. The apply step rejects any other bind address.
+bind_address: 127.0.0.1
+mixed_port: 19082
+controller_port: 19083
+
+# Codex responses endpoint. A live proxy returns 405 when the path is reachable.
+health_url: https://chatgpt.com/backend-api/codex/responses
+expected_status: 405
+health_interval: 10
+health_timeout_ms: 5000
+
+# Empty include_filter keeps every region except exclude_filter.
+# The default exclude_filter drops Hong Kong nodes and subscription notice rows.
+include_filter: ''
+exclude_filter: '(?i)香港|🇭🇰|hong[ -]?kong|(?:^|[^a-z])hk(?:$|[^a-z])|剩余流量|套餐到期'
+
+subscription_interval: 3600
+default_download_route: BOOTSTRAP
+provider_user_agent: clash.meta
+ipv6: false
+log_level: warning
+
+# Optional. Leave empty to use `codex` from PATH and the Codex default home.
+codex_bin: codex
+codex_home: ''
+
+# Program name used by supervisord. The selector program is "<service_name>-health".
+service_name: codex-mihomo
+
+# Leave empty until this host's process manager is known.
+# Example: /etc/supervisor/supervisord.conf
+supervisor_config: ''
+supervisor_user: ''
